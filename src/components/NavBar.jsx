@@ -8,14 +8,14 @@ export default function NavBar() {
           <a className="btn btn-ghost text-2xl">😋</a>
         </div>
         <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li><a>Home</a></li>
+          <ul className="menu menu-horizontal">
+            <li><a className='text-lg'>Home</a></li>
             <li>
               <details>
-                <summary>Food</summary>
-                <ul className="bg-base-100 rounded-t-none p-2">
+                <summary className='text-lg'>Food</summary>
+                <ul className="bg-base-100 text-base rounded-t-none p-2">
                   <li><a>Search</a></li>
-                  <li><a>Randomizer</a></li>
+                  <li><a>Random</a></li>
                 </ul>
               </details>
             </li>
