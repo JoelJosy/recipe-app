@@ -3,7 +3,7 @@ import daisyui from 'daisyui';
 
 export default {
   daisyui: {
-    themes: ["light", "dark", "aqua"], 
+    themes: ["light", "dark", "autumn", "cupcake"], 
   },
   content: [
     "./index.html",
