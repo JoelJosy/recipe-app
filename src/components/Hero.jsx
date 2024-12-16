@@ -20,8 +20,15 @@ export default function Hero() {
                     Start searching <span aria-hidden="true">→</span>
                 </a>
                 </div>
-                
               </div>
+            </div>
+        </div>
+
+        <div className="bg-transparent flex items-center justify-center">
+            <div className="bg-transparent flex w-5xl mb-48">
+              <div className="card bg-base-300 rounded-box grid h-96 w-80 flex-grow place-items-center">content</div>
+              <div className="divider divider-horizontal">OR</div>
+              <div className="card bg-base-300 rounded-box grid h-96 w-80 flex-grow place-items-center">content</div>
             </div>
         </div>
     </div>
