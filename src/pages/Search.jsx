@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
+  const [defRecipes, setDefRecipes] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -15,6 +16,7 @@ export default function Search() {
       try {
         const loadedRecipes = await getRecipesApi();
         setRecipes(loadedRecipes);
+        setDefRecipes(loadedRecipes);
       } catch (err) {
         console.log(err);
         setError("Failed to load recipes...");
@@ -29,13 +31,17 @@ export default function Search() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return
+    if (!searchQuery.trim()) {
+      setRecipes(defRecipes);
+      return
+    }
     if (loading) return
 
     setLoading(true)
     try {
         const searchResults = await searchRecipesApi(searchQuery)
-        setRecipes(searchResults)
+        if (!searchResults) setRecipes([])
+        else setRecipes(searchResults)
         setError(null)
     } catch (err) {
         console.log(err)
@@ -45,10 +51,8 @@ export default function Search() {
     }
   };
 
-
-
   return (
-    <>
+    <> 
       <NavBar />
       {/* Seach Button */}
       <div className='search-bar my-12'>
@@ -73,7 +77,7 @@ export default function Search() {
             Error, cannot load recipe...
         </h1>
       </div>}
-
+      
       {/* Grid */}
       {loading ? (
         // Loading
@@ -87,11 +91,20 @@ export default function Search() {
         </div>
       ) : (
         // Grid
+        recipes.length===0 ? (
+          <div className="flex mt-64 items-center justify-center">
+            <h1 className="text-center text-3xl font-semibold tracking-tight text-gray-900">
+              Can't find recipe...
+            </h1>
+          </div>
+        ) : (
         <div className="recipes-grid flex flex-wrap justify-center gap-6 p-4">
-        {recipes.map((recipe) => (
+          {recipes.map((recipe) => (
           <RecipeCard recipe={recipe} key={recipe.idMeal}/>
         ))}
         </div>
+        )
+
       )}
       
       <Footer />
