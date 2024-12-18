@@ -4,12 +4,13 @@ import RecipeCard from '../components/RecipeCard'
 
 const recipes = [   {idMeal: 1, strMeal: "Chicken Biryani", strCategory: "Chicken", strMealThumb: "./", strArea: "Iranian"}, 
                     {idMeal: 2, strMeal: "Lamb Biryani", strCategory: "Lamb", strMealThumb: "./", strArea: "Arabic"},
-                    {idMeal: 3, strMeal: "Pudding", strCategory: "Dessert", strMealThumb: "./", strArea: "English"}
+                    {idMeal: 3, strMeal: "Pudding", strCategory: "Dessert", strMealThumb: "./", strArea: "English"},
+                    {idMeal: 4, strMeal: "Pulao", strCategory: "Vegetarian", strMealThumb: "./", strArea: "Indian"}
                   ];
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
-  //const [recipes, setRecipes] = useState([]);
+  // const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +24,7 @@ export default function Search() {
   return (
     <>
       <NavBar />
+      {/* Seach Button */}
       <div className='search-bar my-12'>
           <form onSubmit={handleSearch} className='flex items-center w-full max-w-md mx-auto'>
             <input
@@ -38,6 +40,7 @@ export default function Search() {
           </form>
       </div>
 
+      {/* Error page */}
       {error && 
       <div className="flex mt-64 items-center justify-center">
         <h1 className="text-center text-5xl font-semibold tracking-tight text-gray-900">
@@ -45,7 +48,9 @@ export default function Search() {
         </h1>
       </div>}
 
+      {/* Grid */}
       {loading ? (
+        // Loading
         <div className="flex mt-64 items-center justify-center">
           <div className="text-center flex items-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900">
@@ -55,6 +60,7 @@ export default function Search() {
           </div>
         </div>
       ) : (
+        // Grid
         <div className="recipes-grid flex flex-wrap justify-center gap-6 p-4">
         {recipes.map((recipe) => (
           <RecipeCard recipe={recipe} key={recipe.idMeal}/>
