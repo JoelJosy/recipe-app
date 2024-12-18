@@ -14,6 +14,13 @@ export default function RecipeDesc({ recipe }) {
     return ingredients;
   };
 
+  const getInstructions = () => {
+    const instList = recipe.strInstructions.split(/\n|\./); // Corrected regex
+    return instList
+      .map(inst => inst.trim()) // Trim each instruction
+      .filter(step => step.length > 0); // Remove empty steps
+  };
+
   return (
     <div>
       <button
@@ -44,7 +51,12 @@ export default function RecipeDesc({ recipe }) {
           </ul>
 
           <h3 className="text-xl font-semibold mb-2">Instructions</h3>
-          <p className="mb-4">{recipe.strInstructions}</p>
+
+          <ol className="ml-4 mb-4 list-decimal">
+            {getInstructions().map((instruction, index) => (
+              <li key={index}>{instruction}</li>
+            ))}
+          </ol>
 
           {recipe.strYoutube && (
             <a
