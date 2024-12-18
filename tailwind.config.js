@@ -10,7 +10,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'custom-pri': '#4a00ff', // Replace with your hex code
+      },
+    },
   },
   plugins: [
     daisyui,
