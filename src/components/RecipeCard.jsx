@@ -1,4 +1,5 @@
 import React from 'react'
+import RecipeDesc from './RecipeDesc'
 
 export default function RecipeCard({recipe}) {
   return (<div className="card w-80 bg-base-100 shadow-xl">
@@ -12,7 +13,8 @@ export default function RecipeCard({recipe}) {
               </h2>
               <p>Cuisine: {recipe.strArea}</p>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">View Recipe</button>
+                <RecipeDesc recipe={recipe} key={recipe.idMeal} />
+
               </div>
             </div>
         </div>
