@@ -14,7 +14,6 @@ export default function RecipeCard({recipe}) {
               <p>Cuisine: {recipe.strArea}</p>
               <div className="card-actions justify-end">
                 <RecipeDesc recipe={recipe} key={recipe.idMeal} />
-
               </div>
             </div>
         </div>
