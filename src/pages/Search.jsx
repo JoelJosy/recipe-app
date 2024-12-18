@@ -75,7 +75,7 @@ export default function Search() {
 
         {/* Error / Not Found */}
         {(error && !loading) && (
-          <div className="flex mt-64 items-center justify-center flex-grow">
+          <div className="flex items-center justify-center flex-grow">
             <h1 className="text-center text-5xl font-semibold tracking-tight text-gray-900">
               {error}
             </h1>
@@ -84,7 +84,7 @@ export default function Search() {
 
         {/* Loading */}
         {loading && (
-          <div className="flex mt-64 items-center justify-center flex-grow">
+          <div className="flex items-center justify-center flex-grow">
             <div className="text-center flex items-center">
               <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900">Loading</h1>
               <div className="loading loading-dots loading-lg mt-7"></div>
@@ -103,7 +103,7 @@ export default function Search() {
 
         {/* No Recipes Found */}
         {!loading && !error && recipes.length === 0 && (
-          <div className="flex mt-64 items-center justify-center flex-grow">
+          <div className="flex items-center justify-center flex-grow">
             <h1 className="text-center text-5xl font-semibold tracking-tight text-gray-900">
               Can't find recipe...
             </h1>
