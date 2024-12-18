@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from '../components/NavBar'
 import RecipeCard from '../components/RecipeCard'
 import { getRecipesApi, searchRecipesApi } from '../services/api';
-
+import Footer from '../components/Footer'
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -94,7 +94,7 @@ export default function Search() {
         </div>
       )}
       
-
+      <Footer />
     </>
   )
 }
