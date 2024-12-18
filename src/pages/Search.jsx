@@ -1,22 +1,48 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../components/NavBar'
 import RecipeCard from '../components/RecipeCard'
+import { getRecipesApi, searchRecipesApi } from '../services/api';
 
-const recipes = [   {idMeal: 1, strMeal: "Chicken Biryani", strCategory: "Chicken", strMealThumb: "./", strArea: "Iranian"}, 
-                    {idMeal: 2, strMeal: "Lamb Biryani", strCategory: "Lamb", strMealThumb: "./", strArea: "Arabic"},
-                    {idMeal: 3, strMeal: "Pudding", strCategory: "Dessert", strMealThumb: "./", strArea: "English"},
-                    {idMeal: 4, strMeal: "Pulao", strCategory: "Vegetarian", strMealThumb: "./", strArea: "Indian"}
-                  ];
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
-  // const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadRecipes = async () => {
+      try {
+        const loadedRecipes = await getRecipesApi();
+        setRecipes(loadedRecipes);
+      } catch (err) {
+        console.log(err);
+        setError("Failed to load recipes...");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadRecipes();
+  }, []);
 
 
-  const handleSearch = () => {
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return
+    if (loading) return
 
+    setLoading(true)
+    try {
+        const searchResults = await searchRecipesApi(searchQuery)
+        setRecipes(searchResults)
+        setError(null)
+    } catch (err) {
+        console.log(err)
+        setError("Failed to search recipes...")
+    } finally {
+        setLoading(false)
+    }
   };
 
 
